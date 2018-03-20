@@ -49,7 +49,7 @@ use \Psr\Container\ContainerInterface;
 
 return [
     \FastRoute\Dispatcher::class => function (ContainerInterface $c) {
-        return FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
+        return FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) use ($c) {
             require __DIR__ . '/routes.php';
         });
     },
@@ -69,13 +69,21 @@ function response() { return new \Slim\Http\Response(); }
 
 /**
  * @var \FastRoute\RouteCollector $r
+ * @var \Psr\Container\ContainerInterface|\Anonymous\SimpleDi\FactoryInterface $c
  */
 
-$r->get('/', function () {
-    return response()->write('Hello, World!');
+$r->get('/', function () use ($c) {
+    // Тут лучше использовать зависимость от интерфейса, но не хотелось усложнять этот пример
+    return $c->instantiate(\Slim\Http\Response::class)->write('Hello, World!');
 });
 
 $r->get('/{name:[a-zA-Z0-9_-]+}', function (ServerRequestInterface $request) {
     return response()->write("Hello, {$request->getAttribute('name')}!");
 });
 ```
+
+Пытливый читатель отметит, что приведенный на этой странице код немного отличается от того, что представлен 
+в репозитории. А именно, здесь пробрасывается переменная `$c`, содержащая указатель на контейнер. Таким образом мы имеем 
+возможность получить из контейнера необходимые зависимости без автоматических связывания и инъекции.
+
+Реализация полноценного Dependency Injection разобрана в [Advanced application](../advanced/README.md)
