@@ -2,6 +2,12 @@
 
 [Ortic](../../README.md) > [PSR и будущее приложений на PHP](../README.md) > Basic application
 
+Перед вами полноценное современное приложение на 30 строк кода. Конечно, это число не учитывает код подключаемых 
+библиотек, но и они не столь велики.
+
+Здесь и контейнер зависимостей, и настоящий роутер, и PSR-7 запрос/ответ. Вы можете возразить, что не хватает 
+логирования, но и оно добавляется несколькими строками кода (см. [Advanced application](../advanced/README.md)). 
+
 [composer.json](composer.json)
 
 ```json
@@ -65,6 +71,7 @@ namespace Routes;
 
 use \Psr\Http\Message\ServerRequestInterface;
 
+// Синтаксический сахар, скорее, пример плохого кода в данном случае
 function response() { return new \Slim\Http\Response(); }
 
 /**
@@ -73,7 +80,7 @@ function response() { return new \Slim\Http\Response(); }
  */
 
 $r->get('/', function () use ($c) {
-    // Тут лучше использовать зависимость от интерфейса, но не хотелось усложнять этот пример
+    // Лучше использовать зависимость от интерфейса, не хотелось излишне усложнять текущий пример
     return $c->instantiate(\Slim\Http\Response::class)->write('Hello, World!');
 });
 
