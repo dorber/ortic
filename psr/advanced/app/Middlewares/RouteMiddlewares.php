@@ -12,7 +12,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 /**
- * Class Route
+ * Class RouteMiddlewares
  * @package App\Middlewares
  */
 class RouteMiddlewares implements MiddlewareInterface
@@ -32,6 +32,7 @@ class RouteMiddlewares implements MiddlewareInterface
     }
 
     /**
+     * Handles routes middlewares
      * @param ServerRequestInterface $request
      * @param RequestHandlerInterface $handler
      * @return ResponseInterface

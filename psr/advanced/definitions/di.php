@@ -58,7 +58,7 @@ return [
     },
 
     'logger.level' => \Monolog\Logger::DEBUG,
-    'logger.path' => __DIR__ . '/../logs/app.log',
+    'logger.path' => __DIR__ . '/../storage/logs/app.log',
 
     Psr\Log\LoggerInterface::class => function (ContainerInterface $c) {
         $handler = new Monolog\Handler\StreamHandler($c->get('logger.path'), $c->get('logger.level'));

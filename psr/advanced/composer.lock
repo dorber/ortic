@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "anonymous-php/simple-di",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/anonymous-php/simple-di.git",
-                "reference": "78a8813c575fb5d021f5d549e4f27996fa263fcf"
+                "reference": "c11542d9b98fa03392fc5ce4ec84791d15186e58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/anonymous-php/simple-di/zipball/78a8813c575fb5d021f5d549e4f27996fa263fcf",
-                "reference": "78a8813c575fb5d021f5d549e4f27996fa263fcf",
+                "url": "https://api.github.com/repos/anonymous-php/simple-di/zipball/c11542d9b98fa03392fc5ce4ec84791d15186e58",
+                "reference": "c11542d9b98fa03392fc5ce4ec84791d15186e58",
                 "shasum": ""
             },
             "require": {
@@ -29,6 +29,7 @@
                     "Anonymous\\SimpleDi\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -47,11 +48,7 @@
                 "invoker",
                 "resolver"
             ],
-            "support": {
-                "source": "https://github.com/anonymous-php/simple-di/tree/1.1.0",
-                "issues": "https://github.com/anonymous-php/simple-di/issues"
-            },
-            "time": "2018-03-19T15:29:44+00:00"
+            "time": "2018-03-20T11:54:05+00:00"
         },
         {
             "name": "dflydev/fig-cookies",

@@ -18,16 +18,27 @@ class App implements RequestHandlerInterface
     protected $container;
 
 
+    /**
+     * App constructor.
+     * @param ContainerInterface $container
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         return $this->container->call(['dispatcher', 'dispatch'], [$request]);
     }
 
+    /**
+     * Runs the dispatcher with the server request
+     */
     public function run()
     {
         send($this->handle(Request::createFromGlobals($_SERVER)));

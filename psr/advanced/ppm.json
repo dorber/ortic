@@ -1,0 +1,15 @@
+{
+    "bridge": "InvokableMiddleware",
+    "host": "0.0.0.0",
+    "port": 8080,
+    "workers": 2,
+    "app-env": "prod",
+    "debug": 0,
+    "logging": 0,
+    "static-directory": "public\/",
+    "bootstrap": "App\\PmInvoker",
+    "max-requests": 1000,
+    "populate-server-var": true,
+    "socket-path": "storage\/ppm\/run\/",
+    "pidfile": "storage\/ppm\/ppm.pid"
+}

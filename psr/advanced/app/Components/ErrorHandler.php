@@ -8,6 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 
+/**
+ * Class ErrorHandler
+ * @package App\Components
+ */
 class ErrorHandler extends ErrorHandlerDefault
 {
 
@@ -27,7 +31,6 @@ class ErrorHandler extends ErrorHandlerDefault
     /**
      * @param ServerRequestInterface $request
      * @return ResponseInterface
-     * @throws \Throwable
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {

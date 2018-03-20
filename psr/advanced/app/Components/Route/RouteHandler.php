@@ -10,6 +10,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Class RouteHandler
+ * @package App\Components\Route
+ */
 class RouteHandler implements RequestHandlerInterface
 {
 
@@ -42,22 +46,24 @@ class RouteHandler implements RequestHandlerInterface
     }
 
     /**
+     * Handles request and passes it to routes handler
      * @param ServerRequestInterface $request
      * @return ResponseInterface
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        // Default arguments
         $arguments = [
             'request' => $request,
             'response' => $this->container->instantiate(ResponseInterface::class),
         ];
 
+        // Routes arguments
         foreach ($this->arguments as $argument) {
             $arguments[$argument] = $request->getAttribute($argument);
         }
 
+        // Collect echoes
         ob_start();
         $response = $this->container->call($this->handler, $arguments);
         $output = ob_get_clean();
@@ -66,6 +72,7 @@ class RouteHandler implements RequestHandlerInterface
             $response = $this->container->instantiate(ResponseInterface::class)->write($response);
         }
 
+        // Write echoes to the end of the response
         if (!empty($output) && $response->getBody()->isWritable()) {
             $response->getBody()->write($output);
         }

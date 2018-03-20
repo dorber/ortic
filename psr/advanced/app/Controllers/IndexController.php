@@ -8,6 +8,10 @@ use Psr\Http\Message\ServerRequestInterface;
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
 use PSR7Sessions\Storageless\Session\SessionInterface;
 
+/**
+ * Class IndexController
+ * @package App\Controllers
+ */
 class IndexController
 {
 
@@ -15,16 +19,28 @@ class IndexController
     protected $view;
 
 
+    /**
+     * IndexController constructor.
+     * @param ViewInterface $view
+     */
     public function __construct(ViewInterface $view)
     {
         $this->view = $view;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @return mixed
+     */
     public function index(ServerRequestInterface $request)
     {
         return $this->view->render('hello', ['name' => 'World', 'request' => $request]);
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @return mixed
+     */
     public function counter(ServerRequestInterface $request)
     {
         /** @var SessionInterface $session */
@@ -35,6 +51,10 @@ class IndexController
         return $this->view->render('counter', ['counter' => $newValue, 'request' => $request]);
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @return mixed
+     */
     public function minus(ServerRequestInterface $request)
     {
         /** @var SessionInterface $session */
