@@ -1,0 +1,11 @@
+{
+    "require": {
+        "anonymous-php/simple-di": "^1.1",
+        "http-interop/response-sender": "^1.0",
+        "middlewares/error-handler": "^1.0",
+        "middlewares/fast-route": "^1.0",
+        "middlewares/request-handler": "^1.1",
+        "oscarotero/middleland": "^1.0",
+        "slim/http": "^0.3.0"
+    }
+}
