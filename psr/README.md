@@ -32,7 +32,7 @@ _*_ Стандарты, на основе которых постороено д
 * [Сборник ссылок](https://github.com/middlewares/awesome-psr15-middlewares) по тематике PSR-7/PSR-15.
 * [Набор мидлваров](https://github.com/middlewares/psr15-middlewares) на все случаи жизни.
 * [Сессии](https://github.com/psr7-sessions/storageless) без хранения состояния на стороне сервера.
-
+* Менеджер процессов [PHP-PM](https://github.com/php-pm/php-pm).
 
 ### Примеры приложений с использованием PSR-7 и PSR-15
 * [Basic application](basic/README.md)
