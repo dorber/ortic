@@ -4,7 +4,10 @@
 
 ### Рекомендации разработчикам
 
-Принятые на текущий момент стандарты [https://www.php-fig.org/psr/](https://www.php-fig.org/psr/):
+Если вы не знакомы с абривиатурой PSR, рекомендую ознакомиться с рекомендациями 
+[https://www.php-fig.org/psr/](https://www.php-fig.org/psr/).  
+
+Принятые на текущий момент стандарты:
 
 * [PSR-1](https://www.php-fig.org/psr/psr-1): Basic Coding Standard
 * [PSR-2](https://www.php-fig.org/psr/psr-2): Coding Style Guide
