@@ -49,8 +49,8 @@ return [
 
 Текущий способ подключения FastRoute не поддерживает инъекцию зависимостей, давайте это исправим. Есть несколько 
 вариантов решения проблемы, одним из которых является переопределение метода, который запускает обработчик (`handler`) 
-роута, – в нашем случае это мидвар \Middlewares\RequestHandler. Либо мы можем переопределить обработчик роута, решив
-заодно вторую поставленную нами проблему "Мидлвары для роутов".
+роута, – в нашем случае это мидвар \Middlewares\RequestHandler. Или мы можем переопределить обработчик роута, решив
+заодно вторую поставленную перед нами задачу "Мидлвары для роутов".
 
 Переопределим [RouteCollector](app/Components/Route/RouteCollector.php), расширив его методы таким образом, чтобы они 
 принимали еще одним параметром список мидлваров, а при добавлении роута оборачивали его обработчик в нашу обертку:
@@ -74,9 +74,45 @@ return [
 появился еще один мидлвар `RouteMiddlewares`. Его предназначение в том, чтобы получить список мидлваров для роута и 
 обработать их, вернув ответ или передав управление дальше. 
 
+```php
+<?php
+
+return [
+    \Middlewares\ErrorHandler::class,
+    \Middlewares\FastRoute::class,
+    \App\Middlewares\RouteMiddlewares::class,
+    \Middlewares\RequestHandler::class,
+];
+```
+
 Таким образом можно производить, например, проверки прав доступа до запуска обработчика роута, который тянет за собой 
 инъекцию сервиса с подключением к базе данных. Или как в нашем примере, инициализировать сессию для определенной группы
 роутов.
+
+```php
+<?php
+
+use App\Controllers\HelloAction;
+use App\Controllers\IndexController;
+use App\Components\Route\RouteCollector;
+use PSR7Sessions\Storageless\Http\SessionMiddleware;
+
+/**
+ * @var RouteCollector $r
+ */
+
+$r->get('/', [IndexController::class, 'index']);
+
+$r->group('/', function (RouteCollector $r) {
+    $r->get('counter', [IndexController::class, 'counter']);
+    $r->get('counter/minus', [IndexController::class, 'minus']);
+}, [SessionMiddleware::class]);
+
+$r->get('/exception', function () {
+    throw new Exception('Test exception');
+});
+$r->get('/{name:[a-zA-Z0-9_-]+}', HelloAction::class);
+```
 
 Раз уж речь зашла о сессиях, стоит упомянуть, в этом приложении используется 
 [реализация сессиии](https://github.com/psr7-sessions/storageless) без хранения состояния на сервере. Подход, похожий на 
