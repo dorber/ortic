@@ -27,3 +27,13 @@ _*_ Стандарты, на основе которых постороено д
 * [Basic application](basic/README.md)
 * [Advanced application](advanced/README.md)
 
+
+### Полезные ссылки
+
+* Ссылка на PSR уже была выше, – [обязательно к прочтению](https://www.php-fig.org/psr/), если еще не читали.
+* Реализации DI:
+  * [PHP-DI](http://php-di.org),
+  * [Simple DI](https://github.com/anonymous-php/simple-di).
+* [Сборник ссылок](https://github.com/middlewares/awesome-psr15-middlewares) по тематике PSR-7/PSR-15.
+* [Набор мидлваров](https://github.com/middlewares/psr15-middlewares) на все случаи жизни.
+* [Сессии](https://github.com/psr7-sessions/storageless) без хранения состояния на стороне сервера.
